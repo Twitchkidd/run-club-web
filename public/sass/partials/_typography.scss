@@ -1,31 +1,71 @@
 @font-face {
-    font-family: 'panama';
-    src: url('/fonts/panama-bold-webfont.woff2') format('woff2'),
-         url('/fonts/panama-bold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "hattori_hanzolight";
+  src: url("/fonts/Hattori_Hanzo-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: "hattori_hanzolight_italic";
+  src: url("/fonts/Hattori_Hanzo_Italic-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "artifikamedium";
+  src: url("/fonts/artifika-regular-webfont.woff2") format("woff2"),
+    url("/fonts/artifika-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 html {
-  font-size:10px;
+  font-size: 16px;
 }
 
 body {
-  font-size:1.5rem;
-  color:$black;
+  font-family: "hattori_hanzolight", sans-serif;
+  color: $black;
 }
 
-h1, h2, h3, h4, h5, h6, {
-  font-size: 5rem;
-  font-family: 'Panama';
-  font-weight: 600;
-  letter-spacing:-1px;
+i,
+em {
+  font-family: "hattori_hanzolight_italic", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "artifikamedium";
+}
+
+h1 {
+  font-size: 2em;
+  line-height: 1.25em;
+}
+
+h2 {
+  font-size: 1.625em;
+  line-height: 1.15384615em;
+}
+
+h3 {
+  font-size: 1.375em;
+  line-height: 1.13636364em;
+}
+
+h4 {
+  font-size: 1.125em;
+  line-height: 1.11111111em;
 }
 
 a {
   text-decoration: none;
-  color:$black;
+  color: $black;
 }
 
 p a {
@@ -41,31 +81,31 @@ p {
   word-wrap: break-word;
   position: relative;
   z-index: 2;
-  margin:0;
+  margin: 0;
   font-size: 40px;
   z-index: 2;
-  line-height:1.1;
+  line-height: 1.1;
   transform: skew(0, -3deg);
   &--long {
     font-size: 30px;
   }
   &:before {
-    content: '';
-    width:50px;
-    left:0;
-    top:0;
-    height:100%;
+    content: "";
+    width: 50px;
+    left: 0;
+    top: 0;
+    height: 100%;
     // top:10%;
     display: block;
     position: absolute;
     z-index: -1;
-    transform:skew(-5deg)
+    transform: skew(-5deg);
   }
-  line-height:1.1;
+  line-height: 1.1;
   // inline link inside
   a {
     border-bottom: 0;
-    $yellowa: rgba($yellow,0.8);
+    $yellowa: rgba($yellow, 0.8);
     background-image: linear-gradient(to right, $yellowa 100%, $yellowa 50%);
   }
 }

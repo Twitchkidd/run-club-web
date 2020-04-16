@@ -8,7 +8,7 @@ body {
   body:before {
     content: '';
     display: block;
-    background: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E 85%, #48ded4 95%);
+    background: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #ffc40e 85%, #48ded4 95%);
     height: 10px;
     width: 100%; }
 
@@ -433,30 +433,64 @@ template {
   display: none; }
 
 @font-face {
-  font-family: 'panama';
-  src: url("/fonts/panama-bold-webfont.woff2") format("woff2"), url("/fonts/panama-bold-webfont.woff") format("woff");
+  font-family: "hattori_hanzolight";
+  src: url("/fonts/Hattori_Hanzo-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "hattori_hanzolight_italic";
+  src: url("/fonts/Hattori_Hanzo_Italic-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "artifikamedium";
+  src: url("/fonts/artifika-regular-webfont.woff2") format("woff2"), url("/fonts/artifika-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 html {
-  font-size: 10px; }
+  font-size: 16px; }
 
 body {
-  font-size: 1.5rem;
-  color: #303030; }
+  font-family: "hattori_hanzolight", sans-serif;
+  color: #16161d; }
 
-h1, h2, h3, h4, h5, h6 {
-  font-size: 5rem;
-  font-family: 'Panama';
-  font-weight: 600;
-  letter-spacing: -1px; }
+i,
+em {
+  font-family: "hattori_hanzolight_italic", sans-serif; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "artifikamedium"; }
+
+h1 {
+  font-size: 2em;
+  line-height: 1.25em; }
+
+h2 {
+  font-size: 1.625em;
+  line-height: 1.15384615em; }
+
+h3 {
+  font-size: 1.375em;
+  line-height: 1.13636364em; }
+
+h4 {
+  font-size: 1.125em;
+  line-height: 1.11111111em; }
 
 a {
   text-decoration: none;
-  color: #303030; }
+  color: #16161d; }
 
 p a {
-  border-bottom: 2px solid #FFC40E; }
+  border-bottom: 2px solid #ffc40e; }
 
 p {
   line-height: 2;
@@ -476,7 +510,7 @@ p {
   .title--long {
     font-size: 30px; }
   .title:before {
-    content: '';
+    content: "";
     width: 50px;
     left: 0;
     top: 0;
@@ -510,7 +544,7 @@ label {
 .form {
   background: white;
   padding: 2rem;
-  box-shadow: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E 85%, #48ded4 95%); }
+  box-shadow: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #ffc40e 85%, #48ded4 95%); }
   .form + .form {
     margin-top: 4rem; }
   .form h2 {
@@ -577,7 +611,7 @@ label {
     background: none;
     border: 0; }
     .flash__remove:hover {
-      color: #FFC40E; }
+      color: #ffc40e; }
   .flash:after {
     content: '';
     display: block;
@@ -607,7 +641,7 @@ label {
   padding: 0;
   -ms-flex-pack: justify;
       justify-content: space-between;
-  background: #303030; }
+  background: #16161d; }
   .nav__section {
     display: -ms-flexbox;
     display: flex; }
@@ -618,7 +652,7 @@ label {
     display: -ms-flexbox;
     display: flex; }
   .nav__link {
-    background: #303030;
+    background: #16161d;
     color: white;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     text-transform: uppercase;
@@ -642,7 +676,7 @@ label {
     .nav__link:hover, .nav__link--active {
       border-bottom-color: rgba(0, 0, 0, 0.2);
       border-right-color: rgba(0, 0, 0, 0.05);
-      background: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E 85%, #48ded4 95%) fixed; }
+      background: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #ffc40e 85%, #48ded4 95%) fixed; }
       .nav__link:hover svg, .nav__link--active svg {
         -ms-transform: scale(1.2);
             transform: scale(1.2); }
@@ -708,7 +742,7 @@ label {
   .table tr:nth-child(odd):not(:first-child) {
     background: #f7f7f7; }
   .table thead tr {
-    background: #303030;
+    background: #16161d;
     color: white; }
 
 .stores {
@@ -819,10 +853,10 @@ label {
         background: #e6e6e6;
         padding: 1rem 1rem 1rem 4rem; }
       .tag__choice input:checked + label {
-        background: #FFC40E; }
+        background: #ffc40e; }
   .tag__link {
-    background: #FFC40E;
-    color: #303030;
+    background: #ffc40e;
+    color: #16161d;
     display: -ms-flexbox;
     display: flex;
     padding-left: 10px;
@@ -894,7 +928,7 @@ label {
   margin: 0;
   margin-top: -3rem;
   margin-right: -5rem;
-  background: #303030;
+  background: #16161d;
   color: white;
   display: inline-block;
   float: right;
@@ -955,7 +989,7 @@ label {
     left: 0;
     content: '';
     display: block;
-    background: linear-gradient(0, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E 85%, #48ded4 95%);
+    background: linear-gradient(0, #48ded4 0%, #a026bf 20%, #e82c75 60%, #ffc40e 85%, #48ded4 95%);
     position: absolute;
     height: 100%;
     background-attachment: fixed; }
@@ -988,7 +1022,7 @@ label {
     font-size: 1.2rem;
     color: #999999; }
   .review__stars {
-    color: #FFC40E; }
+    color: #ffc40e; }
   .review__body {
     padding: 2rem; }
   .review p {
@@ -1009,7 +1043,7 @@ label {
     .reviewer__stars input {
       display: none; }
       .reviewer__stars input:checked ~ label {
-        color: #FFC40E; }
+        color: #ffc40e; }
       .reviewer__stars input + label {
         font-size: 0;
         /* These are in the opposite DOM order
@@ -1102,9 +1136,9 @@ label {
 
 .button {
   border: 0;
-  background: #FFC40E;
-  color: #303030;
-  font-family: 'Panama';
+  background: #ffc40e;
+  color: #16161d;
+  font-family: "hattori_hanzolight";
   font-weight: 600; }
 
 .avatar {
