@@ -1,0 +1,21 @@
+mixin runForm(run = {})
+  form(action=`/new-run/${run._id || ''}` method="POST" class="card")
+    label(for="name") Name
+    input(type="text" name="name" value=run.name)
+    label(for="description") Description
+    textarea(name="description")= run.description
+    //- address, lng, and lat
+    label(for="address") Start
+    input(type="text" id="address" name="location[address]" value=(run.location && run.location.address))
+    label(for="lng") Start Lng
+    input(type="text" id="lng" name="location[coordinates][0]" value=(run.location && run.location.coordinates[0]) required)
+    label(for="lat") Start Lat
+    input(type="text" id="lat" name="location[coordinates][1]" value=(run.location && run.location.coordinates[1]) required)
+    - const choices = ['Trail', 'Training', 'Ultra', 'Dogs']
+    - const tags = run.tags || []
+    ul.tags
+      each choice in choices
+        .tag.tag__choice
+          input(type="checkbox" id=choice value=choice name="tags" checked=(tags.includes(choice)))
+          label(for=choice) #{choice}
+    input(type="submit" value="Save ->" class="button")

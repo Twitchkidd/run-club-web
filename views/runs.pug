@@ -1,0 +1,9 @@
+extends layout
+
+include mixins/_runCard
+block content
+  .inner
+    h2= title
+    .runs
+      each run in runs
+        +runCard(run)
