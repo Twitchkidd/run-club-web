@@ -13,10 +13,10 @@
 }
 
 @font-face {
-  font-family: "artifikamedium";
-  src: url("/fonts/artifika-regular-webfont.woff2") format("woff2"),
-    url("/fonts/artifika-regular-webfont.woff") format("woff");
-  font-weight: normal;
+  font-family: "Museo_Slab_500_2";
+  src: url("/fonts/Museo_Slab_500_2-webfont.woff2") format("woff2"),
+    url("/fonts/Museo_Slab_500_2-webfont.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -40,7 +40,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "artifikamedium";
+  font-family: "Museo_Slab_500_2";
+  font-weight: 500;
 }
 
 h1 {
