@@ -7,6 +7,7 @@ const uuid = require("uuid");
 const multerOptions = {
   storage: multer.memoryStorage(),
   fileFilter(req, file, next) {
+    console.log("HELLO?");
     const isPhoto = file.mimetype.startsWith("image/");
     if (isPhoto) {
       next(null, true);
@@ -91,7 +92,7 @@ exports.getRunBySlug = async (req, res, next) => {
   res.render("run", { run, title: run.name });
 };
 
-exports.getStoresByTag = async (req, res) => {
+exports.getRunsByTag = async (req, res) => {
   const tag = req.params.tag;
   const tagQuery = tag || { $exists: true };
   const tagsPromise = Run.getTagsList();
