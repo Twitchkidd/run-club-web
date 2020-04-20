@@ -4,7 +4,10 @@ mixin runForm(run = {})
     input(type="text" name="name" value=run.name)
     label(for="description") Description
     textarea(name="description")= run.description
-    //- address, lng, and lat
+    label(for='photo') Photo
+      input(type='file' name='photo' id='photo' accept='image/gif, image/png, image/jpeg, image/jpg')
+      if run.photo
+        img(src=`/uploads/${run.photo}` alt=run.name width=200)
     label(for="address") Start
     input(type="text" id="address" name="location[address]" value=(run.location && run.location.address))
     label(for="lng") Start Lng

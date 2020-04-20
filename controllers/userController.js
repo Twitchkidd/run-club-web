@@ -15,6 +15,7 @@ exports.validateUser = (req, res, next) => {
   req.checkBody("name", "Please supply a name!").notEmpty();
   req.sanitizeBody("email").normalizeEmail({
     remove_dots: false,
+    gmail_remove_dots: false,
     remove_extensions: false,
     gmail_remove_subaddress: false,
   });
@@ -47,4 +48,22 @@ exports.register = async (req, res, next) => {
   const registerWithPromise = promisify(User.register, User);
   await registerWithPromise(user, req.body.password);
   next();
+};
+
+exports.account = (req, res) => {
+  res.render("account", { title: "Edit Your Account" });
+};
+
+exports.updateAccount = async (req, res) => {
+  const updates = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+  const user = await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { $set: updates },
+    { new: true, runValidators: true, context: "query" }
+  );
+  req.flash("success", "Updated profile!");
+  res.redirect("back");
 };

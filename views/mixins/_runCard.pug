@@ -2,9 +2,10 @@ mixin runCard(run = {})
   .run
     .run__hero
       .run__actions
-        .run__action.run__action--edit
-          a(href=`/runs/${run._id}/edit`)
-            != h.icon('pencil')
+        if user && run.author.equals(user._id)
+          .run__action.run__action--edit
+            a(href=`/runs/${run._id}/edit`)
+              != h.icon('pencil')
       img(src=`/uploads/${run.photo || 'run.jpg'}`)
       h2.title
         a(href=`/run/${run.slug}`) #{run.name}
