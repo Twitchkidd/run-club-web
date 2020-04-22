@@ -26,4 +26,5 @@ exports.menu = [
   { slug: "/runs", title: "My Runs", icon: "run" },
   { slug: "/map", title: "Map", icon: "map" },
   { slug: "/tags", title: "Tags", icon: "tag" },
+  { slug: "/runners", title: "Runners", icon: "run" },
 ];

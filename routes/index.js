@@ -3,11 +3,12 @@ const router = express.Router();
 const runController = require("../controllers/runController");
 const userController = require("../controllers/userController");
 const authController = require("../controllers/authController");
+const runnersController = require("../controllers/runnersController");
 
 const { catchErrors } = require("../handlers/errorHandlers");
 
 router.get("/", catchErrors(runController.getRuns));
-router.get("/runs", catchErrors(runController.getruns));
+router.get("/runs", catchErrors(runController.getRuns));
 router.get("/new-run", authController.isLoggedIn, runController.newRun);
 
 router.post(
@@ -50,6 +51,14 @@ router.post(
   "/account/reset/:token",
   authController.confirmedPasswords,
   catchErrors(authController.update)
+);
+
+router.get("/runners", catchErrors(runnersController.getRunners));
+
+router.post(
+  "/api/toggleFriendship/:id",
+  authController.isLoggedIn,
+  catchErrors(runnersController.toggleFriendship)
 );
 
 module.exports = router;

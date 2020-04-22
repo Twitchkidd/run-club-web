@@ -79,7 +79,7 @@ exports.updateRun = async (req, res) => {
   }).exec();
   req.flash(
     "success",
-    `Successfully updated <strong>${run.name}</strong>. <a href="/runs/${run.slug}">View Run -></a>`
+    `Successfully updated <strong>${run.name}</strong>. <a href="/run/${run.slug}">View Run -></a>`
   );
   res.redirect(`/runs/${run._id}/edit`);
 };
