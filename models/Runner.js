@@ -6,7 +6,7 @@ const validator = require("validator");
 const mongodbErrorHandler = require("mongoose-mongodb-errors");
 const passportLocalMongoose = require("passport-local-mongoose");
 
-const userSchema = new Schema({
+const runnerSchema = new Schema({
   email: {
     type: String,
     unique: true,
@@ -26,18 +26,38 @@ const userSchema = new Schema({
   resetPasswordExpires: {
     type: Date,
   },
-  buds: [String],
-  outboundBudRequests: [String],
-  inboundBudRequests: [String],
-  rejectedBudRequests: [String],
+  buds: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "Runner",
+    },
+  ],
+  outboundBudRequests: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "Runner",
+    },
+  ],
+  inboundBudRequests: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "Runner",
+    },
+  ],
+  rejectedBudRequests: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "Runner",
+    },
+  ],
 });
 
-userSchema.virtual("gravatar").get(function () {
+runnerSchema.virtual("gravatar").get(function () {
   const hash = md5(this.email);
   return `https://gravatar.com/avatar/${hash}?s=200`;
 });
 
-userSchema.plugin(passportLocalMongoose, { usernameField: "email" });
-userSchema.plugin(mongodbErrorHandler);
+runnerSchema.plugin(passportLocalMongoose, { usernameField: "email" });
+runnerSchema.plugin(mongodbErrorHandler);
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Runner", runnerSchema);

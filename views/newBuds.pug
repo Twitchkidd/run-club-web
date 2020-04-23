@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  .inner
+    each runner in runners
+      .card
+        img(src=runner.gravatar alt=runner.name)
+        p= runner.name
+        form(action=`/api/budsRequest/${runner._id}` method="POST")
+          input.button(type="submit" value="Send Buds Request!")

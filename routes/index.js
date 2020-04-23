@@ -55,6 +55,23 @@ router.post(
 
 router.get("/runners", catchErrors(runnersController.getRunners));
 
+router.get(
+  "/new-buds",
+  authController.isLoggedIn,
+  catchErrors(runnersController.newBuds)
+);
+router.get(
+  "/buds-list",
+  authController.isLoggedIn,
+  catchErrors(runnersController.budsList)
+);
+
+router.post(
+  "/api/budsRequest/:id",
+  authController.isLoggedIn,
+  catchErrors(runnersController.budsRequest)
+);
+
 router.post(
   "/api/toggleFriendship/:id",
   authController.isLoggedIn,

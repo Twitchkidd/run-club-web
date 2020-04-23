@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  .inner
+    - const inboundBuds = runners.filter(runner => user.inboundBudRequests.includes(runner._id.toString()))
+    - const buds = runners.filter(runner => user.buds.includes(runner._id))
+    each inboundBud in inboundBuds
+      .card
+        img(src=inboundBud.gravatar alt=inboundBud.name)
+        p= inboundBud.name
+        form(action=`/api/acceptBudRequest/${inboundBud._id}` method="POST")
+            input.button(type="submit" value="Accept Bud Request!")
+        form(action=`/api/rejectBudRequest/${inboundBud._id}` method="POST")
+            input.button(type="submit" value="Reject Bud Request.")
+    each bud in buds
+      .card
+        img(src=bud.gravatar alt=bud.name)
+        p= bud.name
+        form(action=`/api/unBudRunner/${bud._id}` method="POST")
+          input.button(type="submit" value="Unbud Bud :(")

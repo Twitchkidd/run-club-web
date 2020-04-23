@@ -22,9 +22,11 @@ exports.icon = (name) => fs.readFileSync(`./public/images/icons/${name}.svg`);
 exports.siteName = `Run Club`;
 
 exports.menu = [
-  { slug: "/new-run", title: "New Run", icon: "add" },
-  { slug: "/runs", title: "My Runs", icon: "run" },
-  { slug: "/map", title: "Map", icon: "map" },
-  { slug: "/tags", title: "Tags", icon: "tag" },
-  { slug: "/runners", title: "Runners", icon: "run" },
+  // { slug: "/new-run", title: "New Run", icon: "add" },
+  // { slug: "/runs", title: "My Runs", icon: "run" },
+  // { slug: "/map", title: "Map", icon: "map" },
+  // { slug: "/tags", title: "Tags", icon: "tag" },
+  // { slug: "/runners", title: "Runners", icon: "run" },
+  { slug: "/new-buds", title: "New Buds", icon: "run" },
+  { slug: "/buds-list", title: "Buds List", icon: "run" },
 ];
