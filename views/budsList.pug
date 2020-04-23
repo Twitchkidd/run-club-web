@@ -3,7 +3,7 @@ extends layout
 block content
   .inner
     - const inboundBuds = runners.filter(runner => user.inboundBudRequests.includes(runner._id.toString()))
-    - const buds = runners.filter(runner => user.buds.includes(runner._id))
+    - const buds = runners.filter(runner => user.buds.includes(runner._id.toString()))
     each inboundBud in inboundBuds
       .card
         img(src=inboundBud.gravatar alt=inboundBud.name)
@@ -17,4 +17,4 @@ block content
         img(src=bud.gravatar alt=bud.name)
         p= bud.name
         form(action=`/api/unBudRunner/${bud._id}` method="POST")
-          input.button(type="submit" value="Unbud Bud :(")
+          input.button(type="submit" value="Unbud Bud ☹️")

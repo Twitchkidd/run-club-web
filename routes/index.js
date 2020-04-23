@@ -71,11 +71,20 @@ router.post(
   authController.isLoggedIn,
   catchErrors(runnersController.budsRequest)
 );
-
 router.post(
-  "/api/toggleFriendship/:id",
+  "/api/acceptBudRequest/:id",
   authController.isLoggedIn,
-  catchErrors(runnersController.toggleFriendship)
+  catchErrors(runnersController.acceptBudRequest)
+);
+router.post(
+  "/api/rejectBudRequest/:id",
+  authController.isLoggedIn,
+  catchErrors(runnersController.rejectBudRequest)
+);
+router.post(
+  "/api/unBudRunner/:id",
+  authController.isLoggedIn,
+  catchErrors(runnersController.unBudRunner)
 );
 
 module.exports = router;
