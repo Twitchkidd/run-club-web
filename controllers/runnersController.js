@@ -1,28 +1,6 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 
-exports.getRunners = async (req, res) => {
-  const runners = await User.find();
-  res.render("runners", { title: "Runners", runners });
-};
-
-exports.toggleFriendship = async (req, res) => {
-  const buds = req.user.buds.map((obj) => obj.toString());
-  const operator = buds.includes(req.params.id) ? "$pull" : "$addToSet";
-  const runner = await User.findByIdAndUpdate(
-    req.user._id,
-    { [operator]: { buds: req.params.id } },
-    { new: true }
-  );
-  req.flash(
-    `${operator === "$pull" ? "info" : "success"}`,
-    operator === "$pull"
-      ? `You've unfriended ${runner.name}.`
-      : `You've friended ${runner.name}!`
-  );
-  res.redirect("back");
-};
-
 exports.newBuds = async (req, res) => {
   const newBuds = await User.find({
     _id: {

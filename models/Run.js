@@ -40,6 +40,7 @@ const runSchema = new mongoose.Schema({
     ref: "User",
     required: "You must supply an author!",
   },
+  runners: [String],
 });
 
 runSchema.pre("save", async function (next) {

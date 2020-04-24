@@ -7,10 +7,14 @@ const runnersController = require("../controllers/runnersController");
 
 const { catchErrors } = require("../handlers/errorHandlers");
 
-router.get("/", catchErrors(runController.getRuns));
-router.get("/runs", catchErrors(runController.getRuns));
-router.get("/new-run", authController.isLoggedIn, runController.newRun);
+router.get("/", catchErrors(userController.homePage));
 
+router.get(
+  "/runs",
+  authController.isLoggedIn,
+  catchErrors(runController.getRuns)
+);
+router.get("/new-run", authController.isLoggedIn, runController.newRun);
 router.post(
   "/new-run",
   runController.upload,
@@ -52,8 +56,6 @@ router.post(
   authController.confirmedPasswords,
   catchErrors(authController.update)
 );
-
-router.get("/runners", catchErrors(runnersController.getRunners));
 
 router.get(
   "/new-buds",

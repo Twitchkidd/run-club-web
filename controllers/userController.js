@@ -2,6 +2,15 @@ const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const promisify = require("es6-promisify");
 
+// exports.landingPage = (req, res) => {
+//   res.render("landing");
+// };
+
+// exports.homePage = async (req, res) => {
+//   // TODO based on whether they have a run imminent/next suggested actions
+//   res.render("home", { title: "Home Page" });
+// };
+
 exports.loginForm = (req, res) => {
   res.render("login", { title: "Login" });
 };

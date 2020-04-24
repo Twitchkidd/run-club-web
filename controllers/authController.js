@@ -28,6 +28,14 @@ exports.isLoggedIn = (req, res, next) => {
   }
 };
 
+// exports.index = (req, res, next) => {
+//   if (req.isAuthenticated()) {
+//     next();
+//     return;
+//   } else {
+
+// }
+
 exports.forgot = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
