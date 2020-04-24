@@ -40,7 +40,16 @@ const runSchema = new mongoose.Schema({
     ref: "User",
     required: "You must supply an author!",
   },
-  runners: [String],
+  runners: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+    },
+  ],
+  start: {
+    type: Date,
+    required: "You must supply a start time!",
+  },
 });
 
 runSchema.pre("save", async function (next) {

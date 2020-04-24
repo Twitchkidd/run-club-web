@@ -8,7 +8,10 @@ mixin runForm(run = {})
       input(type='file' name='photo' id='photo' accept='image/gif, image/png, image/jpeg, image/jpg')
       if run.photo
         img(src=`/uploads/${run.photo}` alt=run.name width=200)
-    label(for="address") Start
+    label(for="start") Start Time
+    - let halfAnHour = h.moment().add(30, "minutes").format("YYYY[-]MM[-]DD[T]hh[:]mm")
+    input(type="datetime-local" name="start" value=halfAnHour required)
+    label(for="address") Start Location
     input(type="text" id="address" name="location[address]" value=(run.location && run.location.address))
     label(for="lng") Start Lng
     input(type="text" id="lng" name="location[coordinates][0]" value=(run.location && run.location.coordinates[0]) required)

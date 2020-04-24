@@ -85,7 +85,9 @@ exports.updateRun = async (req, res) => {
 };
 
 exports.getRunBySlug = async (req, res, next) => {
-  const run = await Run.findOne({ slug: req.params.slug }).populate("author");
+  const run = await Run.findOne({ slug: req.params.slug }).populate(
+    "author runners"
+  );
   if (!run) {
     return next();
   }
@@ -99,4 +101,46 @@ exports.getRunsByTag = async (req, res) => {
   const runsPromise = Run.find({ tags: tagQuery });
   const [tags, runs] = await Promise.all([tagsPromise, runsPromise]);
   res.render("tag", { tags, title: "Tags", tag, runs });
+};
+
+exports.joinRun = async (req, res) => {
+  const run = await Run.findOne({ slug: req.params.slug }).populate(
+    "author runners"
+  );
+  if (
+    [
+      run.author._id.toString(),
+      ...run.runners.map((runner) => runner._id.toString()),
+    ].includes(req.user._id.toString())
+  ) {
+    req.flash("error", "Can't join run!");
+    res.redirect("back");
+    return;
+  }
+  run.runners.push(req.user);
+  await run.save();
+  req.flash("success", "Joined run!");
+  res.redirect("back");
+};
+
+exports.leaveRun = async (req, res) => {
+  const run = await Run.findOne({ slug: req.params.slug }).populate(
+    "author runners"
+  );
+  if (
+    req.user._id.toString() === run.author._id.toString() ||
+    ![...run.runners.map((runner) => runner._id.toString())].includes(
+      req.user._id.toString()
+    )
+  ) {
+    req.flash("error", "Can't leave run!");
+    res.redirect("back");
+    return;
+  }
+  run.runners = run.runners.filter(
+    (runner) => runner._id.toString() !== req.user._id.toString()
+  );
+  await run.save();
+  req.flash("info", "Left run!");
+  res.redirect("back");
 };

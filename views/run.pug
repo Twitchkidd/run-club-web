@@ -9,7 +9,21 @@ block content
   .single__details.inner
     img.single__map(src=h.staticMap(run.location.coordinates))
     p.single__location= run.location.address
+    p= `Starts at ${h.moment(run.start).format("hh[:]mm[ ]MM[-]DD[-]YYYY")} ${h.moment(run.start).fromNow()}!`
     p= run.description
+    p= `Run Started By: ${run.author.name}`
+    if user && user._id.toString() !== run.author._id.toString()
+      if run.runners.map(runner => runner._id.toString()).includes(user._id.toString())
+        form(action=`/api/leaveRun/${run.slug}` method="POST")
+          input.button(type="submit" value="Leave Run")
+      else
+        form(action=`/api/joinRun/${run.slug}` method="POST")
+          input.button(type="submit" value="Join Run")
+    if run.runners
+      p Other Runners:
+      - const runnerNames = run.runners.map(runner => runner.name)
+      each runner in runnerNames
+        p= runner
     if run.tags
       ul.tags
         each tag in run.tags

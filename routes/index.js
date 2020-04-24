@@ -89,4 +89,15 @@ router.post(
   catchErrors(runnersController.unBudRunner)
 );
 
+router.post(
+  "/api/joinRun/:slug",
+  authController.isLoggedIn,
+  catchErrors(runController.joinRun)
+);
+router.post(
+  "/api/leaveRun/:slug",
+  authController.isLoggedIn,
+  catchErrors(runController.leaveRun)
+);
+
 module.exports = router;
