@@ -1,15 +1,17 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
+const Run = mongoose.model("Run");
 const promisify = require("es6-promisify");
 
-// exports.landingPage = (req, res) => {
-//   res.render("landing");
-// };
-
-// exports.homePage = async (req, res) => {
-//   // TODO based on whether they have a run imminent/next suggested actions
-//   res.render("home", { title: "Home Page" });
-// };
+exports.landingPage = async (req, res) => {
+  if (!req.user) {
+    res.render("landing", { title: "Welcome" });
+  } else {
+    const upcomingRuns = await Run.find({ author: req.user }).lean();
+    // Todo: Make this better, lol
+    res.render("landing", { title: req.user.name, upcomingRuns });
+  }
+};
 
 exports.loginForm = (req, res) => {
   res.render("login", { title: "Login" });

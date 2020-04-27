@@ -3,7 +3,7 @@ html
   head
     title= `${title} | ${h.siteName}`
     link(rel='stylesheet', href='/dist/style.css')
-    link(rel="shortcut icon" type="image/png" href="/images/icons/doughnut.png")
+    link(rel="shortcut icon" type="image/png" href="/images/icons/logo.png")
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
     block header
@@ -18,15 +18,15 @@ html
                 a.nav__link(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav__link--active' : ''))
                   != h.icon(item.icon)
                   span #{item.title}
-          .nav__section.nav__section--search
-            .search
-              input.search__input(type="text" placeholder="Trail, training..." name="search")
-              .search__results
+          //- .nav__section.nav__section--search
+          //-   .search
+          //-     input.search__input(type="text" placeholder="Trail, training..." name="search")
+          //-     .search__results
           .nav__section.nav__section--user
             if user
-              li.nav__item: a.nav__link(href="/hearts", class=(currentPath.startsWith('/hearts') ? 'nav__link--active' : ''))
-                != h.icon('heart')
-                span.heart-count #{user.hearts && user.hearts.length}
+              //- li.nav__item: a.nav__link(href="/hearts", class=(currentPath.startsWith('/hearts') ? 'nav__link--active' : ''))
+              //-   != h.icon('heart')
+              //-   span.heart-count #{user.hearts && user.hearts.length}
               li.nav__item: a.nav__link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav__link--active' : ''))
                 != h.icon('logout')
                 span Logout

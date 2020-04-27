@@ -7,7 +7,7 @@ const runnersController = require("../controllers/runnersController");
 
 const { catchErrors } = require("../handlers/errorHandlers");
 
-router.get("/", catchErrors(userController.homePage));
+router.get("/", catchErrors(userController.landingPage));
 
 router.get(
   "/runs",
