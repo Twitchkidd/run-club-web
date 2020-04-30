@@ -9,6 +9,32 @@ const { catchErrors } = require("../handlers/errorHandlers");
 
 router.get("/", catchErrors(userController.landingPage));
 
+router.get("/register", userController.registerForm);
+router.post(
+  "/register",
+  userController.validateUser,
+  catchErrors(userController.register),
+  authController.loginFirstTime
+);
+
+router.get("/account", authController.isLoggedIn, userController.account);
+router.post(
+  "/account",
+  userController.upload,
+  catchErrors(userController.resize),
+  catchErrors(userController.updateAccount)
+);
+router.post(
+  "/accountFirstTime",
+  userController.upload,
+  catchErrors(userController.resize),
+  catchErrors(userController.updateAccountFirstTime)
+);
+
+router.get("/login", userController.loginForm);
+router.post("/login", authController.login);
+router.get("/logout", authController.logout);
+
 router.get(
   "/runs",
   authController.isLoggedIn,
@@ -35,20 +61,6 @@ router.get("/run/:slug", catchErrors(runController.getRunBySlug));
 router.get("/tags", catchErrors(runController.getRunsByTag));
 router.get("/tags/:tag", catchErrors(runController.getRunsByTag));
 
-router.get("/login", userController.loginForm);
-router.post("/login", authController.login);
-router.get("/register", userController.registerForm);
-router.post(
-  "/register",
-  userController.validateUser,
-  catchErrors(userController.register),
-  authController.login
-);
-
-router.get("/logout", authController.logout);
-
-router.get("/account", authController.isLoggedIn, userController.account);
-router.post("/account", catchErrors(userController.updateAccount));
 router.post("/account/forgot", catchErrors(authController.forgot));
 router.get("/account/reset/:token", catchErrors(authController.reset));
 router.post(

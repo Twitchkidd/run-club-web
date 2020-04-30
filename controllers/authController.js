@@ -12,6 +12,14 @@ exports.login = passport.authenticate("local", {
   successFlash: "You're logged in!",
 });
 
+exports.loginFirstTime = passport.authenticate("local", {
+  failureRedirect: "/login",
+  failureFlash: "Failed login!",
+  successRedirect: "/account?firstTime=true",
+  successFlash:
+    "You're logged in! Finish filling out your profile so other runners can better connect with you!",
+});
+
 exports.logout = (req, res) => {
   req.logout();
   req.flash("success", "You're now logged out!");
@@ -27,14 +35,6 @@ exports.isLoggedIn = (req, res, next) => {
     res.redirect("/login");
   }
 };
-
-// exports.index = (req, res, next) => {
-//   if (req.isAuthenticated()) {
-//     next();
-//     return;
-//   } else {
-
-// }
 
 exports.forgot = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });

@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 const Runner = mongoose.model("Runner");
 const promisify = require("es6-promisify");
 
-exports.loginForm = (req, res) => {
-  res.render("login", { title: "Login" });
-};
-
 exports.registerForm = (req, res) => {
   res.render("register", { title: "Register" });
 };
@@ -66,4 +62,8 @@ exports.updateAccount = async (req, res) => {
   );
   req.flash("success", "Updated profile!");
   res.redirect("back");
+};
+
+exports.loginForm = (req, res) => {
+  res.render("login", { title: "Login" });
 };

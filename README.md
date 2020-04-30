@@ -2,6 +2,8 @@
 
 Hello! This is the web version of Run Club, the up-and-coming Tinder for running buddies and Uber for group runs! Hang in with us as it's built!
 
+I should puh-robably edit that, right?
+
 ## Stage 1
 
 I'd started a create-react-app version, but needed to take a step back and properly learn how to interface with MongoDB from Express (though I've got my eye on some other technologies,) and so to cement what I just learned and have something up that's functional, I'm going to build up to where I'm at in the [Learn Node](learnnode.com) course from Wes Bos, and refactor from there.

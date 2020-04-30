@@ -6,6 +6,9 @@ block content
       .card
         img(src=runner.gravatar alt=runner.name)
         p= runner.name
+        p= runner.bio
+        p Average Distance: #{runner.distance}mi
+        p Average Pace: #{runner.pace}min/mi
         - const budsList = user ? user.buds.map(bud => bud._id.toString()) : null
         if user && (runner._id.toString() !== user._id.toString())
           form(action=`/api/toggleFriendship/${runner._id}` method="POST")

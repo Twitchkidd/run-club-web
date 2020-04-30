@@ -26,6 +26,10 @@ const userSchema = new Schema({
   resetPasswordExpires: {
     type: Date,
   },
+  photo: String,
+  distance: Number,
+  pace: Number,
+  bio: String,
   buds: [String],
   outboundBudRequests: [String],
   inboundBudRequests: [String],

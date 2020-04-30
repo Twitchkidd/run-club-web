@@ -2,6 +2,21 @@ const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const Run = mongoose.model("Run");
 const promisify = require("es6-promisify");
+const multer = require("multer");
+const jimp = require("jimp");
+const uuid = require("uuid");
+
+const multerOptions = {
+  storage: multer.memoryStorage(),
+  fileFilter(req, file, next) {
+    const isPhoto = file.mimetype.startsWith("image/");
+    if (isPhoto) {
+      next(null, true);
+    } else {
+      next({ message: "That filetype isn't allowed!" }, false);
+    }
+  },
+};
 
 exports.landingPage = async (req, res) => {
   if (!req.user) {
@@ -11,10 +26,6 @@ exports.landingPage = async (req, res) => {
     // Todo: Make this better, lol
     res.render("landing", { title: req.user.name, upcomingRuns });
   }
-};
-
-exports.loginForm = (req, res) => {
-  res.render("login", { title: "Login" });
 };
 
 exports.registerForm = (req, res) => {
@@ -61,14 +72,44 @@ exports.register = async (req, res, next) => {
   next();
 };
 
+exports.loginForm = (req, res) => {
+  res.render("login", { title: "Login" });
+};
+
 exports.account = (req, res) => {
-  res.render("account", { title: "Edit Your Account" });
+  const firstTime = req.query.firstTime;
+  res.render("account", {
+    title: "Edit Your Account",
+    firstTime,
+  });
+};
+
+exports.upload = multer(multerOptions).single("photo");
+
+exports.resize = async (req, res, next) => {
+  // check if there is no new file to resize
+  if (!req.file) {
+    next(); // skip to the next middleware
+    return;
+  }
+  const extension = req.file.mimetype.split("/")[1];
+  req.body.photo = `${uuid.v4()}.${extension}`;
+  // now we resize
+  const photo = await jimp.read(req.file.buffer);
+  await photo.resize(800, jimp.AUTO);
+  await photo.write(`./public/uploads/${req.body.photo}`);
+  // once we have written the photo to our filesystem, keep going!
+  next();
 };
 
 exports.updateAccount = async (req, res) => {
   const updates = {
     name: req.body.name,
     email: req.body.email,
+    photo: req.body.photo,
+    distance: req.body.distance,
+    pace: req.body.pace,
+    bio: req.body.bio,
   };
   const user = await User.findOneAndUpdate(
     { _id: req.user._id },
@@ -77,4 +118,22 @@ exports.updateAccount = async (req, res) => {
   );
   req.flash("success", "Updated profile!");
   res.redirect("back");
+};
+
+exports.updateAccountFirstTime = async (req, res) => {
+  const updates = {
+    name: req.body.name,
+    email: req.body.email,
+    photo: req.body.photo,
+    distance: req.body.distance,
+    pace: req.body.pace,
+    bio: req.body.bio,
+  };
+  const user = await User.findOneAndUpdate(
+    { _id: req.user._id },
+    { $set: updates },
+    { new: true, runValidators: true, context: "query" }
+  );
+  req.flash("success", "Updated profile!");
+  res.redirect("/");
 };

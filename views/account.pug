@@ -3,9 +3,53 @@ extends layout
 block content
   .inner
     h2= title
-    form.form(action="/account" method="POST")
-      label(for="name") Name
-      input(type="text" name="name" value=user.name)
-      label(for="email") Email Address
-      input(type="email" name="email" value=user.email)
-      input.button(type="submit" value="Update My Account")
+    if firstTime
+      form.form(action="/accountFirstTime" method="POST" enctype="multipart/form-data")
+        label(for="name") Name
+        input(type="text" name="name" value=user.name)
+        label(for="email") Email Address
+        input(type="email" name="email" value=user.email)
+        label(for='photo') Photo
+        input(type='file' name='photo' id='photo' accept='image/gif, image/png, image/jpeg, image/jpg')
+        if user.photo
+          img(src=`/uploads/${user.photo}` alt=user.name width=200)
+        else
+          p We use your 
+            span
+              a(href="gravatar.com") Gravatar
+            span  by default
+          img(src=user.gravatar alt=user.name width=200)
+        label(for='distance') Average Distance
+        input(type='number' name="distance" step=1 value=`${user.distance || 6}`)
+        span Miles
+        label(for='pace') Average Pace
+        input(type='number' name='pace' step=0.5 value=`${user.pace || 10}`)
+        span Minutes per Mile
+        label(for='bio') Bio
+        input(type='textarea' name='bio' placeholder="A little something about you ..." value=`${user.bio || ''}`)
+        input.button(type="submit" value="Update My Account")
+    else
+      form.form(action="/account" method="POST" enctype="multipart/form-data")
+        label(for="name") Name
+        input(type="text" name="name" value=user.name)
+        label(for="email") Email Address
+        input(type="email" name="email" value=user.email)
+        label(for='photo') Photo
+        input(type='file' name='photo' id='photo' accept='image/gif, image/png, image/jpeg, image/jpg')
+        if user.photo
+          img(src=`/uploads/${user.photo}` alt=user.name width=200)
+        else
+          p We use your 
+            span
+              a(href="gravatar.com") Gravatar
+            span  by default
+          img(src=user.gravatar alt=user.name width=200)
+        label(for='distance') Average Distance
+        input(type='number' name="distance" step=1 value=`${user.distance || 6}`)
+        span Miles
+        label(for='pace') Average Pace
+        input(type='number' name='pace' step=0.5 value=`${user.pace || 10}`)
+        span Minutes per Mile
+        label(for='bio') Bio
+        input(type='textarea' name='bio' placeholder="A little something about you ..." value=`${user.bio || ''}`)
+        input.button(type="submit" value="Update My Account")

@@ -6,7 +6,7 @@ block content
     - const buds = runners.filter(runner => user.buds.includes(runner._id.toString()))
     each inboundBud in inboundBuds
       .card
-        img(src=inboundBud.gravatar alt=inboundBud.name)
+        img(src=(inboundBud.photo ? `/uploads/${inboundBud.photo}` : inboundBud.gravatar) alt=inboundBud.name)
         p= inboundBud.name
         form(action=`/api/acceptBudRequest/${inboundBud._id}` method="POST")
             input.button(type="submit" value="Accept Bud Request!")
@@ -14,7 +14,7 @@ block content
             input.button(type="submit" value="Reject Bud Request.")
     each bud in buds
       .card
-        img(src=bud.gravatar alt=bud.name)
+        img(src=(bud.photo ? `/uploads/${bud.photo}` : bud.gravatar) alt=bud.name)
         p= bud.name
         form(action=`/api/unBudRunner/${bud._id}` method="POST")
           input.button(type="submit" value="Unbud Bud ☹️")
