@@ -8,6 +8,6 @@ mixin runCard(run = {})
               != h.icon('pencil')
       img(src=`/uploads/${run.photo || 'run.jpg'}`)
       h2.title
-        a(href=`/run/${run.slug}`) #{run.name}
+        a(href=`/runs/${run.slug}`) #{run.name}
     .run__details
       p= run.description.split(' ').slice(0, 25).join(' ')

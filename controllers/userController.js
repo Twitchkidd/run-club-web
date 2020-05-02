@@ -23,7 +23,6 @@ exports.landingPage = async (req, res) => {
     res.render("landing", { title: "Welcome" });
   } else {
     const upcomingRuns = await Run.find({ author: req.user }).lean();
-    // Todo: Make this better, lol
     res.render("landing", { title: req.user.name, upcomingRuns });
   }
 };

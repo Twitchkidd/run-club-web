@@ -16,11 +16,6 @@ const multerOptions = {
   },
 };
 
-exports.homePage = (req, res) => {
-  console.log(req.name);
-  res.render("index");
-};
-
 exports.newRun = (req, res) => {
   res.render("editRun", { title: "New Run" });
 };
@@ -50,7 +45,18 @@ exports.createRun = async (req, res) => {
     "success",
     `Successfully Created ${run.name}, care to invite some buds?`
   );
-  res.redirect(`/run/${run.slug}`);
+  res.redirect(`/runs/${run.slug}`);
+};
+
+exports.getMyRuns = async (req, res) => {
+  const myOwnRunsPromise = Run.find({ author: req.user._id });
+  // const runsImInPromise = Run.find({ author: req.user._id }); This is wrong, lol, it's dog-walking time though.
+  const runsImInPromise = Run.find({ author: req.user._id });
+  const [myOwnRuns, runsImIn] = Promise.all([
+    myOwnRunsPromise,
+    runsImInPromise,
+  ]);
+  res.render("runs", { title: "My Runs", runs: [...myOwnRuns, ...runsImIn] });
 };
 
 exports.getRuns = async (req, res) => {
@@ -78,7 +84,7 @@ exports.updateRun = async (req, res) => {
   }).exec();
   req.flash(
     "success",
-    `Successfully updated <strong>${run.name}</strong>. <a href="/run/${run.slug}">View Run -></a>`
+    `Successfully updated <strong>${run.name}</strong>. <a href="/runs/${run.slug}">View Run -></a>`
   );
   res.redirect(`/runs/${run._id}/edit`);
 };

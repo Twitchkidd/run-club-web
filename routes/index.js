@@ -35,11 +35,6 @@ router.get("/login", userController.loginForm);
 router.post("/login", authController.login);
 router.get("/logout", authController.logout);
 
-router.get(
-  "/runs",
-  authController.isLoggedIn,
-  catchErrors(runController.getRuns)
-);
 router.get("/new-run", authController.isLoggedIn, runController.newRun);
 router.post(
   "/new-run",
@@ -54,9 +49,19 @@ router.post(
   catchErrors(runController.updateRun)
 );
 
-router.get("/runs/:id/edit", catchErrors(runController.editRun));
+router.get(
+  "/my-runs",
+  authController.isLoggedIn,
+  catchErrors(runController.getMyRuns)
+);
 
-router.get("/run/:slug", catchErrors(runController.getRunBySlug));
+router.get(
+  "/runs",
+  authController.isLoggedIn,
+  catchErrors(runController.getRuns)
+);
+router.get("/runs/:slug", catchErrors(runController.getRunBySlug));
+router.get("/runs/:id/edit", catchErrors(runController.editRun));
 
 router.get("/tags", catchErrors(runController.getRunsByTag));
 router.get("/tags/:tag", catchErrors(runController.getRunsByTag));
