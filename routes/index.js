@@ -17,6 +17,17 @@ router.post(
   authController.loginFirstTime
 );
 
+router.get(
+  "/deleteAccount",
+  authController.isLoggedIn,
+  authController.deleteAccountPage
+);
+router.post(
+  "/deleteAccount",
+  authController.isLoggedIn,
+  catchErrors(authController.deleteAccount)
+);
+
 router.get("/account", authController.isLoggedIn, userController.account);
 router.post(
   "/account",

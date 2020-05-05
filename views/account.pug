@@ -19,15 +19,21 @@ block content
               a(href="gravatar.com") Gravatar
             span  by default
           img(src=user.gravatar alt=user.name width=200)
-        label(for='distance') Average Distance
-        input(type='number' name="distance" step=1 value=`${user.distance || 6}`)
+        label(for='distance-from') Average Distance - From
+        input(type='number' name="distance-from" step=1 value=`${user.distanceLower || 4}`)
+        label(for='distance-to') Average Distance - To
+        input(type='number' name="distance-to" step=1 value=`${user.distanceUpper || 10}`)
         span Miles
-        label(for='pace') Average Pace
-        input(type='number' name='pace' step=0.5 value=`${user.pace || 10}`)
+        label(for='pace-from') Average Pace - From
+        input(type='number' name='pace-from' step=0.5 value=`${user.paceLower || 8}`)
+        label(for='pace-to') Average Pace - To
+        input(type='number' name='pace-to' step=0.5 value=`${user.paceUpper || 12}`)
         span Minutes per Mile
         label(for='bio') Bio
         input(type='textarea' name='bio' placeholder="A little something about you ..." value=`${user.bio || ''}`)
         input.button(type="submit" value="Update My Account")
+      form(action="/deleteAccount" method="GET")
+        input.button(type="submit" value="Delete My Account")
     else
       form.form(action="/account" method="POST" enctype="multipart/form-data")
         label(for="name") Name
@@ -44,12 +50,18 @@ block content
               a(href="gravatar.com") Gravatar
             span  by default
           img(src=user.gravatar alt=user.name width=200)
-        label(for='distance') Average Distance
-        input(type='number' name="distance" step=1 value=`${user.distance || 6}`)
+        label(for='distance-from') Average Distance - From
+        input(type='number' name="distance-from" step=1 value=`${user.distanceLower || 4}`)
+        label(for='distance-to') Average Distance - To
+        input(type='number' name="distance-to" step=1 value=`${user.distanceUpper || 10}`)
         span Miles
-        label(for='pace') Average Pace
-        input(type='number' name='pace' step=0.5 value=`${user.pace || 10}`)
+        label(for='pace-from') Average Pace - From
+        input(type='number' name='pace-from' step=0.5 value=`${user.paceLower || 8}`)
+        label(for='pace-to') Average Pace - To
+        input(type='number' name='pace-to' step=0.5 value=`${user.paceUpper || 12}`)
         span Minutes per Mile
         label(for='bio') Bio
         input(type='textarea' name='bio' placeholder="A little something about you ..." value=`${user.bio || ''}`)
         input.button(type="submit" value="Update My Account")
+      form(action="/deleteAccount" method="GET")
+        input.button(type="submit" value="Delete My Account")

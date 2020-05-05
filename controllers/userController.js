@@ -106,8 +106,10 @@ exports.updateAccount = async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     photo: req.body.photo,
-    distance: req.body.distance,
-    pace: req.body.pace,
+    distanceLower: req.body["distance-from"],
+    distanceUpper: req.body["distance-to"],
+    paceLower: req.body["pace-from"],
+    paceUpper: req.body["pace-to"],
     bio: req.body.bio,
   };
   const user = await User.findOneAndUpdate(
@@ -124,8 +126,10 @@ exports.updateAccountFirstTime = async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     photo: req.body.photo,
-    distance: req.body.distance,
-    pace: req.body.pace,
+    distanceLower: req.body["distance-from"],
+    distanceUpper: req.body["distance-to"],
+    paceLower: req.body["pace-from"],
+    paceUpper: req.body["pace-to"],
     bio: req.body.bio,
   };
   const user = await User.findOneAndUpdate(

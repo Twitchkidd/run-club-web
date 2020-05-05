@@ -97,3 +97,13 @@ exports.update = async (req, res) => {
   req.flash("Success", "Nice! Your password has been reset!");
   res.redirect("/");
 };
+
+exports.deleteAccountPage = (req, res) => {
+  res.render("deleteAccount", { title: "Delete Your Account" });
+};
+
+exports.deleteAccount = async (req, res) => {
+  await User.findOne({ _id: req.user._id }).remove();
+  req.flash("info", `Account for ${req.user.email} has been deleted.`);
+  res.redirect("/");
+};
