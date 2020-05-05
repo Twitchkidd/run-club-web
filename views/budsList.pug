@@ -4,27 +4,23 @@ block content
   .inner
     - console.log(runners)
     - console.log("runners")
-    - console.log(user.inboundBudRequests)
-    - console.log(user."inboundBudRequests")
-    //- - console.log(user.inboundBudRequests.includes(runners[0]._id))
-    //- - console.log(user."inboundBudRequests.includes(runners[0]._id)")
-    - const inboundBuds = runners.map(runner => user.inboundBudRequests.includes(runner._id))
-    - console.log(inboundBuds)
-    - console.log("inboundBuds")
-    - const buds = runners.map(runner => user.buds.includes(runner._id))
-    - console.log(buds);
-    - console.log("buds");
-    each inboundBud in inboundBuds
-      .card
-        img(src=(inboundBud.photo ? `/uploads/${inboundBud.photo}` : inboundBud.gravatar) alt=inboundBud.name)
-        p= inboundBud.name
-        form(action=`/api/acceptBudRequest/${inboundBud._id}` method="POST")
-            input.button(type="submit" value="Accept Bud Request!")
-        form(action=`/api/rejectBudRequest/${inboundBud._id}` method="POST")
-            input.button(type="submit" value="Reject Bud Request.")
-    each bud in buds
-      .card
-        img(src=(bud.photo ? `/uploads/${bud.photo}` : bud.gravatar) alt=bud.name)
-        p= bud.name
-        form(action=`/api/unBudRunner/${bud._id}` method="POST")
-          input.button(type="submit" value="Unbud Bud ☹️")
+    //- - const inboundBuds = runners.map(runner => user.inboundBudRequests.includes(runner._id))
+    //- - console.log(inboundBuds)
+    //- - console.log("inboundBuds")
+    //- - const buds = runners.map(runner => user.buds.includes(runner._id))
+    //- - console.log(buds);
+    //- - console.log("buds");
+    //- each inboundBud in inboundBuds
+    //-   .card
+    //-     img(src=(inboundBud.photo ? `/uploads/${inboundBud.photo}` : inboundBud.gravatar) alt=inboundBud.name)
+    //-     p= inboundBud.name
+    //-     form(action=`/api/acceptBudRequest/${inboundBud._id}` method="POST")
+    //-         input.button(type="submit" value="Accept Bud Request!")
+    //-     form(action=`/api/rejectBudRequest/${inboundBud._id}` method="POST")
+    //-         input.button(type="submit" value="Reject Bud Request.")
+    //- each bud in buds
+    //-   .card
+    //-     img(src=(bud.photo ? `/uploads/${bud.photo}` : bud.gravatar) alt=bud.name)
+    //-     p= bud.name
+    //-     form(action=`/api/unBudRunner/${bud._id}` method="POST")
+    //-       input.button(type="submit" value="Unbud Bud ☹️")
