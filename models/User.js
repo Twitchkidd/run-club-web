@@ -15,25 +15,51 @@ const userSchema = new Schema({
     validate: [validator.isEmail, "Invalid email address!"],
     required: "Please provide an email address!",
   },
-  name: {
-    type: String,
-    trim: true,
-    required: "Please provide a name!",
-  },
   resetPasswordToken: {
     type: String,
   },
   resetPasswordExpires: {
     type: Date,
   },
-  photo: String,
-  distance: Number,
-  pace: Number,
+  created: {
+    type: Date,
+    default: Date.now(),
+  },
+  name: {
+    type: String,
+    trim: true,
+    required: "Please provide a name!",
+  },
   bio: String,
-  buds: [String],
-  outboundBudRequests: [String],
-  inboundBudRequests: [String],
-  rejectedBudRequests: [String],
+  photo: String,
+  distanceLower: Number,
+  distanceUpper: Number,
+  paceLower: Number,
+  paceUpper: Number,
+  buds: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+    },
+  ],
+  outboundBudRequests: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+    },
+  ],
+  inboundBudRequests: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+    },
+  ],
+  rejectedBudRequests: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 userSchema.virtual("gravatar").get(function () {

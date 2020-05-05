@@ -9,15 +9,21 @@ const runSchema = new mongoose.Schema({
     required: "Please name the run! 😃",
   },
   slug: String,
-  description: {
-    type: String,
-    trim: true,
+  author: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+    required: "You must supply an author!",
   },
-  tags: [String],
   created: {
     type: Date,
     default: Date.now(),
   },
+  tags: [String],
+  description: {
+    type: String,
+    trim: true,
+  },
+  photo: String,
   location: {
     type: {
       type: String,
@@ -34,11 +40,9 @@ const runSchema = new mongoose.Schema({
       required: "You must supply an address!",
     },
   },
-  photo: String,
-  author: {
-    type: mongoose.Schema.ObjectId,
-    ref: "User",
-    required: "You must supply an author!",
+  start: {
+    type: Date,
+    required: "You must supply a start time!",
   },
   runners: [
     {
@@ -46,10 +50,6 @@ const runSchema = new mongoose.Schema({
       ref: "User",
     },
   ],
-  start: {
-    type: Date,
-    required: "You must supply a start time!",
-  },
 });
 
 runSchema.pre("save", async function (next) {
