@@ -20,14 +20,16 @@ block content
             span  by default
           img(src=user.gravatar alt=user.name width=200)
         label(for='distance-from') Average Distance - From
-        input(type='number' name="distance-from" step=1 value=`${user.distanceLower || 4}`)
+        input(type='number' name="distance-from" step=1 value=`${user.distanceFrom || 4}`)
+        span Miles
         label(for='distance-to') Average Distance - To
-        input(type='number' name="distance-to" step=1 value=`${user.distanceUpper || 10}`)
+        input(type='number' name="distance-to" step=1 value=`${user.distanceTo || 10}`)
         span Miles
         label(for='pace-from') Average Pace - From
-        input(type='number' name='pace-from' step=0.5 value=`${user.paceLower || 8}`)
+        input(type='number' name='pace-from' step=0.5 value=`${user.paceFrom || 8}`)
+        span Minutes per Mile
         label(for='pace-to') Average Pace - To
-        input(type='number' name='pace-to' step=0.5 value=`${user.paceUpper || 12}`)
+        input(type='number' name='pace-to' step=0.5 value=`${user.paceTo || 12}`)
         span Minutes per Mile
         label(for='bio') Bio
         input(type='textarea' name='bio' placeholder="A little something about you ..." value=`${user.bio || ''}`)
@@ -51,14 +53,16 @@ block content
             span  by default
           img(src=user.gravatar alt=user.name width=200)
         label(for='distance-from') Average Distance - From
-        input(type='number' name="distance-from" step=1 value=`${user.distanceLower || 4}`)
+        input(type='number' name="distance-from" step=1 value=`${user.distanceFrom || 4}`)
+        span Miles
         label(for='distance-to') Average Distance - To
-        input(type='number' name="distance-to" step=1 value=`${user.distanceUpper || 10}`)
+        input(type='number' name="distance-to" step=1 value=`${user.distanceTo || 10}`)
         span Miles
         label(for='pace-from') Average Pace - From
-        input(type='number' name='pace-from' step=0.5 value=`${user.paceLower || 8}`)
+        input(type='number' name='pace-from' step=0.5 value=`${user.paceFrom || 8}`)
+        span Minutes per Mile
         label(for='pace-to') Average Pace - To
-        input(type='number' name='pace-to' step=0.5 value=`${user.paceUpper || 12}`)
+        input(type='number' name='pace-to' step=0.5 value=`${user.paceTo || 12}`)
         span Minutes per Mile
         label(for='bio') Bio
         input(type='textarea' name='bio' placeholder="A little something about you ..." value=`${user.bio || ''}`)

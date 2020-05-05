@@ -32,10 +32,10 @@ const userSchema = new Schema({
   },
   bio: String,
   photo: String,
-  distanceLower: Number,
-  distanceUpper: Number,
-  paceLower: Number,
-  paceUpper: Number,
+  distanceFrom: Number,
+  distanceTo: Number,
+  paceFrom: Number,
+  paceTo: Number,
   buds: [
     {
       type: mongoose.Schema.ObjectId,

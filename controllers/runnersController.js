@@ -55,7 +55,9 @@ exports.budsList = async (req, res) => {
     _id: {
       $in: [...req.user.buds, ...req.user.inboundBudRequests],
     },
-  });
+  }).lean();
+  console.log(budsList);
+  console.log("budsList");
   res.render("budsList", { title: "Buds List", runners: budsList });
 };
 

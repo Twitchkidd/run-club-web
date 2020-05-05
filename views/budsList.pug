@@ -3,7 +3,11 @@ extends layout
 block content
   .inner
     - const inboundBuds = runners.filter(runner => user.inboundBudRequests.includes(runner._id.toString()))
+    - console.log(inboundBuds);
+    - console.log("inboundBuds");
     - const buds = runners.filter(runner => user.buds.includes(runner._id.toString()))
+    - console.log(buds);
+    - console.log("buds");
     each inboundBud in inboundBuds
       .card
         img(src=(inboundBud.photo ? `/uploads/${inboundBud.photo}` : inboundBud.gravatar) alt=inboundBud.name)
