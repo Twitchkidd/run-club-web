@@ -2,9 +2,11 @@ extends layout
 
 block content
   .inner
+    - console.log(runners)
+    - console.log("runners")
     - const inboundBuds = runners.filter(runner => user.inboundBudRequests.includes(runner._id.toString()))
-    - console.log(inboundBuds);
-    - console.log("inboundBuds");
+    - console.log(inboundBuds)
+    - console.log("inboundBuds")
     - const buds = runners.filter(runner => user.buds.includes(runner._id.toString()))
     - console.log(buds);
     - console.log("buds");
