@@ -56,8 +56,6 @@ exports.budsList = async (req, res) => {
       $in: [...req.user.buds, ...req.user.inboundBudRequests],
     },
   }).lean();
-  console.log(budsList);
-  console.log("budsList");
   res.render("budsList", { title: "Buds List", runners: budsList });
 };
 
@@ -70,23 +68,64 @@ exports.acceptBudRequest = async (req, res) => {
   ]);
   const userIdString = user._id.toString();
   const otherRunnerIdString = otherRunner._id.toString();
+  // console.log([...user.buds]);
+  // console.log(typeof [...user.buds][0]);
+  // // Hi I'm actually an object
+  // console.dir([...user.buds][0]);
+  // console.log([...user.buds][0].toString());
+  // // Hey I'm a string
+  // console.log([user.buds.toString()][0]);
+  // console.log(otherRunnerIdString);
+  // console.log([user.buds.toString()][0].includes(otherRunnerIdString));
   if (
-    [...user.rejectedBudRequests, ...user.buds].includes(otherRunnerIdString)
+    [user.rejectedBudRequests.toString()][0].includes(otherRunnerIdString) ||
+    [user.buds.toString()][0].includes(otherRunnerIdString)
   ) {
     req.flash("error", "Can't accept bud request!");
     res.redirect("back");
     return;
   }
-  user.buds.push(otherRunnerIdString);
-  user.inboundBudRequests = user.inboundBudRequests.filter(
-    (runnerId) => runnerId !== otherRunnerIdString
+  console.log(otherRunner);
+  const newRunnerPromise = User.findByIdAndUpdate(
+    user._id,
+    {
+      $addToSet: { buds: { otherRunner } },
+      $pull: { inboundBudRequests: { otherRunner } },
+    },
+    { new: true }
   );
-  otherRunner.buds.push(userIdString);
-  otherRunner.outboundBudRequests = otherRunner.outboundBudRequests.filter(
-    (runnerId) => runnerId !== userIdString
+  const nextNewRunnerPromise = User.findByIdAndUpdate(
+    otherRunner._id,
+    {
+      $addToSet: { buds: { user } },
+      $pull: { outboundBudRequests: { user } },
+    },
+    { new: true }
   );
-  await Promise.all([user.save(), otherRunner.save()]);
-  req.flash("success", `${otherRunner.name} is now your bud!`);
+  const [newRunner, nextNewRunner] = await Promise.all([
+    newRunnerPromise,
+    nextNewRunnerPromise,
+  ]);
+  console.log(newRunner);
+  console.log(nextNewRunner);
+  // console.log(user.buds);
+  // user.buds.push(otherRunnerIdString);
+  // console.log(user.buds);
+  // console.log(user.inboundBudRequests);
+  // user.inboundBudRequests = user.inboundBudRequests.filter(
+  //   (runnerId) => runnerId !== otherRunnerIdString
+  // );
+  // console.log(user.inboundBudRequests);
+  // console.log(otherRunner.buds);
+  // otherRunner.buds.push(userIdString);
+  // console.log(otherRunner.buds);
+  // console.log(otherRunner.outboundBudsRequests);
+  // otherRunner.outboundBudRequests = otherRunner.outboundBudRequests.filter(
+  //   (runnerId) => runnerId !== userIdString
+  // );
+  // console.log(otherRunner.outboundBudsRequests);
+  // await Promise.all([user.save(), otherRunner.save()]);
+  req.flash("success", `${nextNewRunner.name} is now your bud!`);
   res.redirect("back");
 };
 
