@@ -36,30 +36,10 @@ const userSchema = new Schema({
   distanceTo: Number,
   paceFrom: Number,
   paceTo: Number,
-  buds: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
-    },
-  ],
-  outboundBudRequests: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
-    },
-  ],
-  inboundBudRequests: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
-    },
-  ],
-  rejectedBudRequests: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
-    },
-  ],
+  buds: [String],
+  outboundBudRequests: [String],
+  inboundBudRequests: [String],
+  rejectedBudRequests: [String],
 });
 
 userSchema.virtual("gravatar").get(function () {
