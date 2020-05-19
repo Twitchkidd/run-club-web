@@ -51,6 +51,14 @@ exports.budsRequest = async (req, res) => {
 };
 
 exports.budsList = async (req, res) => {
+  // Right, so here, no scrubbing or types or anything?
+  // Not to throw shade, it's just I feel like some
+  // routes got developed more and some didn't, just
+  // because there's some give and take while watching the
+  // videos about it as far as what gets tested, and then
+  // it's like up to the reader to be conscientious, which
+  // is probably fine, lol. Anyway, wtf are these things,
+  // lets start there.
   const budsList = await User.find({
     _id: {
       $in: [...req.user.buds, ...req.user.inboundBudRequests],

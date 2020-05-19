@@ -14,17 +14,17 @@ const helpers = require("./helpers");
 const errorHandlers = require("./handlers/errorHandlers");
 require("./handlers/passport");
 
-// create our Express app
+// create Express app
 const app = express();
 
-// view engine setup
-app.set("views", path.join(__dirname, "views")); // this is the folder where we keep our pug files
+// set up view engine
+app.set("views", path.join(__dirname, "views")); // this is the folder with pug files ... default is process.cwd() + '/views'! Can be a string or array!
 app.set("view engine", "pug"); // we use the engine pug, mustache or EJS work great too
 
-// serves up static files from the public folder. Anything in public/ will just be served up as the file it is
+// serve up anything in public/ as a static file
 app.use(express.static(path.join(__dirname, "public")));
 
-// Takes the raw requests and turns them into usable properties on req.body
+// take raw requests and turn them into usable properties on req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -42,7 +42,7 @@ app.use(
     key: process.env.KEY,
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    store: new MongoStore({ mongooseConnection: mongoose.connection }), // Ooo there's a rethinkDB session library!
   })
 );
 
