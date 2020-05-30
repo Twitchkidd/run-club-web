@@ -1,9 +1,0 @@
-extends layout
-
-block content
-  .inner
-    h2= title
-    form.form(action="/deleteAccount" method="POST")
-      label(for="account-delete") Delete Account?
-      input.button(type="submit" value=`Yes, delete ${user.email}.`)
-      a(href='javascript:history.back()') No, go back.
