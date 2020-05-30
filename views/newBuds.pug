@@ -7,7 +7,7 @@ block content
         img(src=(runner.photo ? `/uploads/${runner.photo}` : runner.gravatar) alt=runner.name)
         p= runner.name
         p= runner.bio
-        p Average Distance: #{runner.distance}mi
-        p Average Pace: #{runner.pace}min/mi
+        p Distance: From #{runner.distanceFrom} to #{runner.distanceTo}mi
+        p Pace: From #{runner.paceFrom} to #{runner.paceTo}min/mi
         form(action=`/api/budsRequest/${runner._id}` method="POST")
           input.button(type="submit" value="Send Buds Request!")

@@ -3,28 +3,28 @@
 */
 
 // FS is a built in module to node that let's us read files from the system we're running on
-const fs = require("fs");
+const fs = require('fs');
 
 // moment.js is a handy library for displaying dates. We need this in our templates to display things like "Posted 5 minutes ago"
-exports.moment = require("moment");
+exports.moment = require('moment');
 
 // Dump is a handy debugging function we can use to sort of "console.log" our data
-exports.dump = (obj) => JSON.stringify(obj, null, 2);
+exports.dump = obj => JSON.stringify(obj, null, 2);
 
 // Making a static map is really long - this is a handy helper function to make one
 exports.staticMap = ([lng, lat]) =>
-  `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=14&size=800x150&key=${process.env.MAP_KEY}&markers=${lat},${lng}&scale=2`;
+	`https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=14&size=800x150&key=${process.env.MAP_KEY}&markers=${lat},${lng}&scale=2`;
 
 // inserting an SVG
-exports.icon = (name) => fs.readFileSync(`./public/images/icons/${name}.svg`);
+exports.icon = name => fs.readFileSync(`./public/images/icons/${name}.svg`);
 
 // Some details about the site
 exports.siteName = `Run Club`;
 
 exports.menu = [
-  { slug: "/my-runs", title: "My Runs", icon: "map" },
-  { slug: "/runs", title: "Runs", icon: "map" },
-  { slug: "/new-run", title: "New Run", icon: "add" },
-  { slug: "/new-buds", title: "New Buds", icon: "run" },
-  { slug: "/buds-list", title: "Buds List", icon: "friends" },
+	{ slug: '/new-buds', title: 'New Buds', icon: 'run' },
+	{ slug: '/buds-list', title: 'Buds List', icon: 'friends' },
+	{ slug: '/new-run', title: 'New Run', icon: 'add' },
+	{ slug: '/runs', title: 'Find Run', icon: 'map' },
+	{ slug: '/my-runs', title: 'Runs', icon: 'map' },
 ];

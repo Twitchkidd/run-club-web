@@ -9,7 +9,8 @@ block content
     //- - console.log(buds)
     each inboundBud in inboundBuds
       .card
-        img(src=(inboundBud.photo ? `/uploads/${inboundBud.photo}` : inboundBud.gravatar) alt=inboundBud.name)
+        - const photoUploaded = !!inboundBud.photo; // Wtf
+        img(src=(photoUploaded ? `/uploads/${inboundBud.photo}` : `${inboundBud.gravatar}`) alt=inboundBud.name)
         p= inboundBud.name
         form(action=`/api/acceptBudRequest/${inboundBud._id}` method="POST")
             input.button(type="submit" value="Accept Bud Request!")
