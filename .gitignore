@@ -24,3 +24,5 @@ yarn-error.log*
 
 haters/
 variables.env
+
+scripts/
