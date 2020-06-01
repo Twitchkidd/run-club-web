@@ -1,8 +1,10 @@
 # run-club-web
 
-Hello! This is the web version of Run Club, the up-and-coming Tinder for running buddies and Uber for group runs! Hang in with us as it's built!
+Hello! This is the web version of Run Club, the up-and-coming Tinder for running buddies and Uber for group runs! Hang in with us as it's built! (please rewrite, lol)
 
-I should puh-robably edit that, right?
+## Stage 2
+
+Okay, back to create-react-app! Thank you Wes Bos for the node course, I don't want to look at Pug files like ever again though, lol.
 
 ## Stage 1
 
